@@ -10,8 +10,8 @@ class Node{
     }
 };
 class LinkedList{
-    Node *head;
-    Node *curr;
+    Node  *head;
+    Node  *curr;
     int count=0;
     public:
     void addBack(int data){
@@ -42,7 +42,7 @@ class LinkedList{
         }
     }
     void removeFront(){
-        Node *temp = head;
+        Node  *temp = head;
         head=head->next;
         delete temp;
         count--;
@@ -76,7 +76,9 @@ class LinkedList{
         cout << endl;
         cout<<"number of nodes "<<count<<endl;
     }
-
+    int getFront(){
+        return head->data;
+    }
     LinkedList(){
         head = nullptr;
     }
