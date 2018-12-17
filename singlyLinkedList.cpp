@@ -4,37 +4,98 @@ class Node{
     public:
     int data;
     Node *next;
-    Node(int _data){
-        data = _data;
+    Node(int data){
+        this->data = data;
+        this->next = nullptr;
     }
 };
 class LinkedList{
-        public:
-    int length;
     Node *head;
-    LinkedList(){
-        length =0;
-        head = NULL;
-    }
-    void addData(int data){
-        Node* node = new Node(data);
-        node->next = head;
-        head = node;
-        length++;
-    }
-    void printData(){
-        Node *temp = head;
-        while(temp){
-            cout << temp->data<<" ";
-            temp = temp->next;
+    Node *curr;
+    int count=0;
+    public:
+    void addBack(int data){
+        if(count==0){
+            head = new Node(data);
+            head->next = nullptr;
+            curr = head;
+            count++;
+        } else {
+            Node *temp = new Node(data);
+            curr->next = temp;
+            curr = curr->next;
+            count++;
         }
     }
+    void addFront(int data){
+        if(count==0){
+            head = new Node(data);
+            head->next = nullptr;
+            curr = head;
+            count++;
+        }
+        else{
+            Node *temp = new Node(data);
+            temp->next=head;
+            head=temp;
+            count++;
+        }
+    }
+    void removeFront(){
+        Node *temp = head;
+        head=head->next;
+        delete temp;
+        count--;
+    }
+    void removeBack(){
+        Node *temp = head;
+        if(temp->next==nullptr){
+            delete temp;
+            head= nullptr;
+            count--;
+        }
+        else{
+            while (temp){
+            if (temp->next == curr){
+                delete curr;
+                temp->next = NULL;
+                curr = temp;
+                count--;
+                break;
+            }
+            temp = temp->next;
+            }
+        }
+    }
+    void print(){
+        Node* temp = head;
+        while(temp){
+            cout << temp->data <<" ";
+            temp=temp->next;
+        }
+        cout << endl;
+        cout<<"number of nodes "<<count<<endl;
+    }
 
+    LinkedList(){
+        head = nullptr;
+    }
+
+    int getCount(){
+        return count;
+    }
 };
 int main(){
-    LinkedList l;
-    l.addData(15);
-    l.addData(3);
-    l.printData();
+    LinkedList list;
+    list.addBack(5);
+    list.addBack(6);
+    list.addBack(18);
+    list.addFront(10);
+    list.print();
+    list.removeFront();
+    list.removeBack();
+    list.addFront(45);
+    list.addBack(4);
+    list.print();
     return 0;
 }
