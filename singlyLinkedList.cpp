@@ -74,10 +74,12 @@ class LinkedList{
             temp=temp->next;
         }
         cout << endl;
-        cout<<"number of nodes "<<count<<endl;
     }
     int getFront(){
         return head->data;
+    }
+    int getBack(){
+        return curr->data;
     }
     LinkedList(){
         head = nullptr;
@@ -87,17 +89,3 @@ class LinkedList{
         return count;
     }
 };
-int main(){
-    LinkedList list;
-    list.addBack(5);
-    list.addBack(6);
-    list.addBack(18);
-    list.addFront(10);
-    list.print();
-    list.removeFront();
-    list.removeBack();
-    list.addFront(45);
-    list.addBack(4);
-    list.print();
-    return 0;
-}
