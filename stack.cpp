@@ -6,7 +6,9 @@ class Stack:public LinkedList{
         LinkedList::addBack(data);
     }
     void pop(){
+        int temp = LinkedList::getBack();
         LinkedList::removeBack();
+        return temp;
     }
     void print(){
         LinkedList::print();
