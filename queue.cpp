@@ -5,8 +5,10 @@ class Queue: public LinkedList{
     void enqueue(int data){
         LinkedList::addBack(data);
     }
-    void dqueue(){
+    int dqueue(){
+        int data = LinkedList::getFront();
         LinkedList::removeFront();
+        return data;
     }
     void print(){
         LinkedList::print();
