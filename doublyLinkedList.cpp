@@ -86,19 +86,28 @@ class DoublyLinkedList{
         }
         cout<<endl;
     }
-    void getCount(){
-        cout<< total<<endl;
+    Node* findNode(int data){
+        Node *temp = nullptr;
+        if(total == 0){
+            return temp;
+        }
+        else{
+            for(Node *i=head,*j=tail;i!=nullptr,j!=nullptr;i=i->next,j=j->prev){
+                if(i->data==data || j->data==data){
+                    (i->data==data)?temp=i:temp=j;
+                    break;
+                }
+            }
+        }
+        return temp;
+    }
+    int getFront(){
+        return head->data;
+    }
+    int getBack(){
+        return tail->data;
+    }
+    int getCount(){
+        return total;
     }
 };
-int main(){
-    DoublyLinkedList list;
-    list.addBack(5);
-    list.addBack(6);
-    list.addFront(11);
-    list.printForward();
-    list.removeFront();
-    list.printForward();
-    list.removeBack();
-    list.printForward();
-    return 0;
-}
