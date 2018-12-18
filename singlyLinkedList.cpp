@@ -42,28 +42,38 @@ class LinkedList{
         }
     }
     void removeFront(){
+        if(count==0){
+            cout<<"OVERFLOW";
+            return;
+        }else{
         Node  *temp = head;
         head=head->next;
         delete temp;
         count--;
+        }
     }
     void removeBack(){
-        Node *temp = head;
-        if(temp->next==nullptr){
-            delete temp;
-            head= nullptr;
-            count--;
-        }
-        else{
-            while (temp){
-            if (temp->next == curr){
-                delete curr;
-                temp->next = NULL;
-                curr = temp;
+        if(count==0){
+            cout<<"OVERFLOW";
+            return;
+        }else{
+          Node *temp = head;
+            if(temp->next==nullptr){
+                delete temp;
+                head= nullptr;
                 count--;
-                break;
             }
-            temp = temp->next;
+            else{
+                while (temp){
+                if (temp->next == curr){
+                    delete curr;
+                    temp->next = NULL;
+                    curr = temp;
+                    count--;
+                    break;
+                }
+                temp = temp->next;
+                }
             }
         }
     }
