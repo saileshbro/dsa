@@ -20,19 +20,6 @@ class DoublyLinkedList{
         head=tail=nullptr;
     }
     void addBack(int data){
-        // if(total==0){
-        //     Node *temp = new Node(data);
-        //     head=temp;
-        //     tail=temp;
-        //     total++;
-        // }
-        // else{
-        //     Node *temp = new Node(data);
-        //     head->next=temp;
-        //     temp->prev=head;
-        //     tail = temp;
-        //     total++;
-        // }
             if(total==0){
             head = new Node(data);
             tail = head;
@@ -46,15 +33,58 @@ class DoublyLinkedList{
             total++;
         }
     }
+    void addFront(int data){
+        if(total==0){
+            head = new Node(data);
+            tail = head;
+            total++;
+        }
+        else{
+            Node *temp = new Node(data);
+            head->prev=temp;
+            Node *temp2 = temp;
+            temp2->next=head;
+            head = head->prev;
+            total++;
+        }
+    }
+    void removeFront(){
+        if(total==0){
+            cout <<"UNDERFLOW";
+            return;
+        }
+        else{
+            Node *temp = head;
+            head = head->next;
+            head->prev=nullptr;
+            delete temp;
+            total--;
+        }
+    }
+    void removeBack(){
+        if(total==0){
+            cout <<"UNDERFLOW";
+            return;
+        }
+        else{
+            Node *temp = tail;
+            tail = tail->prev;
+            tail->next=nullptr;
+            delete temp;
+            total--;
+        }
+    }
     void printForward(){
         for(Node* i = head;i!=nullptr;i=i->next){
             cout << i->data<<" ";
         }
+        cout<<endl;
     }
     void printBackward(){
         for(Node* i = tail;i!=nullptr;i=i->prev){
             cout << i->data<<" ";
         }
+        cout<<endl;
     }
     void getCount(){
         cout<< total<<endl;
@@ -64,10 +94,11 @@ int main(){
     DoublyLinkedList list;
     list.addBack(5);
     list.addBack(6);
-    list.addBack(7);
-    list.addBack(8);
-    list.addBack(9);
-    list.addBack(1);
+    list.addFront(11);
+    list.printForward();
+    list.removeFront();
+    list.printForward();
+    list.removeBack();
     list.printForward();
     return 0;
 }
